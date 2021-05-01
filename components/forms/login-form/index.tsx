@@ -1,10 +1,13 @@
 import { Form, Formik, FormikHelpers } from 'formik';
+
 import { LoginSchema } from '../../../schemas/login.schema';
-import { ValidationMessage } from '../../validation-message';
+import AuthService from '../../../services/auth.service';
 
 export const LoginForm = () => {
-  const handleLogin = (values, formikHelpers: FormikHelpers<any>) => {
+  const handleLogin = async (values, formikHelpers: FormikHelpers<any>) => {
     console.log(values);
+    const { email, password } = values;
+    await AuthService.handleLogin(email, password);
   };
   return (
     <div className="p-2">
