@@ -1,10 +1,38 @@
+import { useEffect, useState } from 'react';
 import Layout from '../../components/layout';
 import { ProtectedRoute } from '../../components/protected-route';
+import VideoService from '../../services/video.service';
 
 const DashboardPage = () => {
+  const [videos, setVideos] = useState([]);
+  useEffect(() => {
+    // service call to load the videos
+    fetchVideos();
+  }, []);
+  const fetchVideos = async () => {
+    const videos = await VideoService.fetchUserVideos();
+    setVideos(videos.data.data);
+  };
   return (
     <Layout>
-      <p>This is the dashboard</p>
+      <div className="row">
+        <div className="col-sm-12">
+          <h1>My Videos</h1>
+          <p>List of videos will come here.</p>
+        </div>
+      </div>
+      <div className="row">
+        {videos.length > 0 &&
+          videos.map((video) => {
+            return (
+              <div className="col-sm-3 pb-3" key={video.id}>
+                <div className="card shadow-sm">
+                  <div className="card-body">{video.description}</div>
+                </div>
+              </div>
+            );
+          })}
+      </div>
     </Layout>
   );
 };
