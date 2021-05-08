@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Layout from '../../components/layout';
 import { ProtectedRoute } from '../../components/protected-route';
+import VideoCard from '../../components/video-card';
 import VideoService from '../../services/video.service';
 
 const DashboardPage = () => {
@@ -26,9 +27,7 @@ const DashboardPage = () => {
           videos.map((video) => {
             return (
               <div className="col-sm-3 pb-3" key={video.id}>
-                <div className="card shadow-sm">
-                  <div className="card-body">{video.description}</div>
-                </div>
+                <VideoCard video={video} />
               </div>
             );
           })}
