@@ -27,9 +27,9 @@ export const Nav = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Link
-              </a>
+              <Link href="/video/submit">
+                <a className="nav-link">Submit Video</a>
+              </Link>
             </li>
             <li className="nav-item dropdown">
               <a

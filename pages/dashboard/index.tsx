@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Layout from '../../components/layout';
+import PageHeader from '../../components/page-header';
 import { ProtectedRoute } from '../../components/protected-route';
 import VideoCard from '../../components/video-card';
 import VideoService from '../../services/video.service';
@@ -16,12 +17,10 @@ const DashboardPage = () => {
   };
   return (
     <Layout>
-      <div className="row">
-        <div className="col-sm-12">
-          <h1>My Videos</h1>
-          <p>List of videos will come here.</p>
-        </div>
-      </div>
+      <PageHeader
+        title="Latest videos"
+        description="Latest videos in this application."
+      />
       <div className="row">
         {videos.length > 0 &&
           videos.map((video) => {

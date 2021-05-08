@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import Route from 'next/router';
+import UrlService from './url.service';
 
 export const TOKEN_STORAGE_KEY = 'token';
 export const USER_STORAGE_KEY = 'userName';
@@ -14,7 +15,7 @@ class AuthService {
   };
 
   static handleLogin = async (email, password) => {
-    const result = await axios.post('http://localhost:8000/api/user/auth', {
+    const result = await axios.post(UrlService.LOGIN_URL, {
       email,
       password,
     });
