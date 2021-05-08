@@ -5,7 +5,7 @@ import PageHeader from '../../../components/page-header';
 
 const VideoSubmitPage = () => {
   return (
-    <Layout>
+    <Layout pageTitle="Submit your video for moderation">
       <PageHeader
         title="Submit your Video"
         description="Submit your video entry through this form. Once your video is moderated and published, your video will be visible."

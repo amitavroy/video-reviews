@@ -5,6 +5,8 @@ import { ProtectedRoute } from '../../components/protected-route';
 import VideoCard from '../../components/video-card';
 import VideoService from '../../services/video.service';
 
+const pageTitle = 'Latest videos in this application.';
+
 const DashboardPage = () => {
   const [videos, setVideos] = useState([]);
   useEffect(() => {
@@ -16,11 +18,8 @@ const DashboardPage = () => {
     setVideos(videos.data.data);
   };
   return (
-    <Layout>
-      <PageHeader
-        title="Latest videos"
-        description="Latest videos in this application."
-      />
+    <Layout pageTitle={pageTitle}>
+      <PageHeader title="Latest videos" description={pageTitle} />
       <div className="row">
         {videos.length > 0 &&
           videos.map((video) => {
