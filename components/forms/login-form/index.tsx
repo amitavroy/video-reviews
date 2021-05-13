@@ -1,7 +1,9 @@
 import { Form, Formik, FormikHelpers } from 'formik';
+import Link from 'next/link';
 
 import { LoginSchema } from '../../../schemas/login.schema';
 import AuthService from '../../../services/auth.service';
+import { ValidationMessage } from '../../validation-message';
 
 export const LoginForm = () => {
   const handleLogin = async (values, formikHelpers: FormikHelpers<any>) => {
@@ -31,9 +33,7 @@ export const LoginForm = () => {
                 onBlur={handleBlur}
                 className="form-control"
               />
-              {errors.email && touched.email ? (
-                <div className="validation-error">{errors.email}</div>
-              ) : null}
+              <ValidationMessage name="email" />
             </div>
             <div className="mb-3">
               <label htmlFor="password">Password</label>
@@ -46,15 +46,20 @@ export const LoginForm = () => {
                 placeholder="Enter your password"
                 className="form-control"
               />
-              {errors.password && touched.password ? (
-                <div className="validation-error">{errors.password}</div>
-              ) : null}
+              <ValidationMessage name="password" />
+              <div className="mt-2 mb-4 text-end">
+                <a href="#">Forgot password</a>
+              </div>
             </div>
             <div className="mb-3">
               <span className="me-3">
                 <button className="btn btn-success mr-3">Login</button>
               </span>
-              <a href="#">Forgot password</a>
+              <span className="me-3">
+                <Link href="/register">
+                  <a className="btn btn-outline-primary mr-3">Register</a>
+                </Link>
+              </span>
             </div>
           </Form>
         )}
