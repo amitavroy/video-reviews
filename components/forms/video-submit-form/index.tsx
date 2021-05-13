@@ -7,7 +7,6 @@ const VideoSubmitForm = () => {
     values,
     formikHelpers: FormikHelpers<any>
   ) => {
-    console.log(values);
     const result = await VideoService.submitVideo({
       url: values.url,
       title: values.title,
