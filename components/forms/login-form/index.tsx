@@ -5,7 +5,6 @@ import AuthService from '../../../services/auth.service';
 
 export const LoginForm = () => {
   const handleLogin = async (values, formikHelpers: FormikHelpers<any>) => {
-    console.log(values);
     const { email, password } = values;
     await AuthService.handleLogin(email, password);
   };
