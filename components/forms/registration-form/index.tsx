@@ -1,16 +1,22 @@
 import { Form, Formik, FormikHelpers } from 'formik';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { RegistrationSchema } from '../../../schemas/registration.schema';
+import UserService from '../../../services/user.service';
+import { ValidationMessage } from '../../validation-message';
 
 const RegistrationForm = () => {
-  const handleSubmit = (values, formikHelpers: FormikHelpers<any>) => {
-    console.log(values);
+  const router = useRouter();
+  const handleSubmit = async (values, formikHelpers: FormikHelpers<any>) => {
+    const resp = await UserService.createUser(values);
+    resp === true && router.push('/login');
   };
   return (
     <React.Fragment>
       <Formik
         initialValues={{
+          name: '',
           email: '',
           password: '',
           confirm: '',
@@ -20,6 +26,19 @@ const RegistrationForm = () => {
       >
         {({ values, handleChange, handleBlur, errors, touched }) => (
           <Form>
+            <div className="mb-3">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                name="name"
+                value={values.name}
+                placeholder="Enter your name"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className="form-control"
+              />
+              <ValidationMessage name="name" />
+            </div>
             <div className="mb-3">
               <label htmlFor="email">Email address</label>
               <input
@@ -31,9 +50,7 @@ const RegistrationForm = () => {
                 onBlur={handleBlur}
                 className="form-control"
               />
-              {errors.email && touched.email ? (
-                <div className="validation-error">{errors.email}</div>
-              ) : null}
+              <ValidationMessage name="email" />
             </div>
             <div className="mb-3">
               <label htmlFor="password">Password</label>
@@ -46,9 +63,7 @@ const RegistrationForm = () => {
                 placeholder="Enter your password"
                 className="form-control"
               />
-              {errors.password && touched.password ? (
-                <div className="validation-error">{errors.password}</div>
-              ) : null}
+              <ValidationMessage name="password" />
             </div>
             <div className="mb-3">
               <label htmlFor="password">Confirm Password</label>
@@ -61,9 +76,7 @@ const RegistrationForm = () => {
                 placeholder="Enter your password again"
                 className="form-control"
               />
-              {errors.confirm && touched.confirm ? (
-                <div className="validation-error">{errors.confirm}</div>
-              ) : null}
+              <ValidationMessage name="confirm" />
             </div>
             <div className="mb-3">
               <span className="me-3">
