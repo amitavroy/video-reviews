@@ -5,6 +5,7 @@ import React from 'react';
 import { RegistrationSchema } from '../../../schemas/registration.schema';
 import UserService from '../../../services/user.service';
 import { ValidationMessage } from '../../validation-message';
+import FormLabel from '../labels';
 
 const RegistrationForm = () => {
   const router = useRouter();
@@ -27,7 +28,7 @@ const RegistrationForm = () => {
         {({ values, handleChange, handleBlur, errors, touched }) => (
           <Form>
             <div className="mb-3">
-              <label htmlFor="name">Name</label>
+              <FormLabel name="name" id="name" />
               <input
                 type="text"
                 name="name"
@@ -40,7 +41,7 @@ const RegistrationForm = () => {
               <ValidationMessage name="name" />
             </div>
             <div className="mb-3">
-              <label htmlFor="email">Email address</label>
+              <FormLabel name="Email address" id="email" />
               <input
                 type="email"
                 name="email"
@@ -53,7 +54,7 @@ const RegistrationForm = () => {
               <ValidationMessage name="email" />
             </div>
             <div className="mb-3">
-              <label htmlFor="password">Password</label>
+              <FormLabel name="Password" id="password" />
               <input
                 type="password"
                 name="password"
@@ -66,7 +67,7 @@ const RegistrationForm = () => {
               <ValidationMessage name="password" />
             </div>
             <div className="mb-3">
-              <label htmlFor="password">Confirm Password</label>
+              <FormLabel name="Confirm Password" id="password" />
               <input
                 type="password"
                 name="confirm"

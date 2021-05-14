@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { LoginSchema } from '../../../schemas/login.schema';
 import AuthService from '../../../services/auth.service';
 import { ValidationMessage } from '../../validation-message';
+import FormLabel from '../labels';
 
 export const LoginForm = () => {
   const handleLogin = async (values, formikHelpers: FormikHelpers<any>) => {
@@ -23,7 +24,7 @@ export const LoginForm = () => {
         {({ values, handleChange, handleBlur, errors, touched }) => (
           <Form>
             <div className="mb-3">
-              <label htmlFor="email">Email address</label>
+              <FormLabel id="email" name="Email address" />
               <input
                 type="email"
                 name="email"
@@ -36,7 +37,7 @@ export const LoginForm = () => {
               <ValidationMessage name="email" />
             </div>
             <div className="mb-3">
-              <label htmlFor="password">Password</label>
+              <FormLabel id="password" name="Password" />
               <input
                 type="password"
                 name="password"
