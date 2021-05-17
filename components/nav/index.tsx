@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
 import Dropdown, { IDropdownItem } from './dropdown';
+
 const primaryDropdown: Array<IDropdownItem> = [
   { name: 'My videos', type: 'link', href: '/dashboard' },
   { type: 'separator' },
@@ -10,7 +12,7 @@ const userDropdown: Array<IDropdownItem> = [
   { name: 'My profile', type: 'link', href: '/dashboard' },
   { name: 'Settings', type: 'link', href: '/video/submit' },
   { type: 'separator' },
-  { name: 'Logout', type: 'link', href: '/video/submit' },
+  { name: 'Logout', type: 'link', href: '/user/logout' },
 ];
 export const Nav = () => {
   const router = useRouter();
