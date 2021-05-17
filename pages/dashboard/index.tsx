@@ -24,7 +24,7 @@ const DashboardPage = () => {
         {videos.length > 0 &&
           videos.map((video) => {
             return (
-              <div className="col-sm-3 pb-3" key={video.id}>
+              <div className="col-sm-4 pb-3" key={video.id}>
                 <VideoCard video={video} />
               </div>
             );
