@@ -1,9 +1,19 @@
+import { useRouter } from 'next/router';
+import { IVideo } from '../../contracts/IVideo';
+
 interface Props {
-  video: any;
+  video: IVideo;
 }
 const VideoCard: React.FC<Props> = ({ video }) => {
+  const router = useRouter();
+  const handleClick = (id) => {
+    router.push(`/video/view/${id}`);
+  };
   return (
-    <div className="card shadow-sm">
+    <div
+      className="card shadow-sm pointer"
+      onClick={() => handleClick(video.id)}
+    >
       <div>
         <img
           src={`https://img.youtube.com/vi/${video.video_id}/mqdefault.jpg`}

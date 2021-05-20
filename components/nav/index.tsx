@@ -52,19 +52,6 @@ export const Nav = () => {
                   </a>
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link href="/video/submit">
-                  <a
-                    className={
-                      'nav-link ' +
-                      (router.pathname === '/video/submit' ? 'active' : '')
-                    }
-                    aria-current="page"
-                  >
-                    Submit Video
-                  </a>
-                </Link>
-              </li>
               <Dropdown items={primaryDropdown} dropdownName="Tasks" />
             </ul>
           </div>

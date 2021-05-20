@@ -17,9 +17,11 @@ const LoginPage = () => {
         <div className="mb-3">
           <h1>Video Review</h1>
         </div>
-        <Card>
-          <LoginForm />
-        </Card>
+        <div className="col-4">
+          <Card>
+            <LoginForm />
+          </Card>
+        </div>
       </div>
     </React.Fragment>
   );

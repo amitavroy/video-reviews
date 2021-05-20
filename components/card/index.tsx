@@ -3,7 +3,7 @@ interface Props {
 }
 const Card: React.FC<Props> = ({ title, children }) => {
   return (
-    <div className="card col-4 shadow">
+    <div className="card shadow">
       {title && title != '' && <div className="card-header">{title}</div>}
       <div className="card-body">{children}</div>
     </div>

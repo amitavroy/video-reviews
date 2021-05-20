@@ -1,6 +1,8 @@
 import axios from 'axios';
+import SCookies from 'cookies';
 import Cookies from 'js-cookie';
 import Route from 'next/router';
+
 import UrlService from './url.service';
 
 export const TOKEN_STORAGE_KEY = 'token';
@@ -13,7 +15,22 @@ class AuthService {
       Authorization: 'Bearer ' + token,
     };
   };
+  static getUserAuthHeaderServer = (req, res) => {
+    const cookies = new SCookies(req, res);
+    const token = cookies.get(TOKEN_STORAGE_KEY);
+    if (token) {
+      return {
+        Authorization: 'Bearer ' + token,
+      };
+    }
 
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  };
   static handleLogin = async (email, password) => {
     const result = await axios.post(UrlService.LOGIN_URL, {
       email,

@@ -7,6 +7,7 @@ const UrlService = {
   LOGIN_URL: baseUrl + 'api/user/auth',
   VIDEO_LIST: baseUrl + 'api/videos/list',
   VIDEO_ADD: baseUrl + 'api/video/add',
+  VIDEO_VIEW: baseUrl + 'api/video/',
 };
 
 export default UrlService;
