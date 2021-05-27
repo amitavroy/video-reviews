@@ -1,5 +1,6 @@
 import { Form, Formik, FormikHelpers } from 'formik';
 import Link from 'next/link';
+import { setFormikErrors } from '../../../lib/utils/helper';
 
 import { LoginSchema } from '../../../schemas/login.schema';
 import AuthService from '../../../services/auth.service';
@@ -9,7 +10,10 @@ import FormLabel from '../labels';
 export const LoginForm = () => {
   const handleLogin = async (values, formikHelpers: FormikHelpers<any>) => {
     const { email, password } = values;
-    await AuthService.handleLogin(email, password);
+    const resp = await AuthService.handleLogin(email, password);
+    if (resp && resp.status === 422) {
+      setFormikErrors(resp.data.errors, formikHelpers.setFieldError);
+    }
   };
   return (
     <div className="p-2">
