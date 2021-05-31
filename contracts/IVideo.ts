@@ -1,3 +1,5 @@
+import { IComment } from './IComment';
+
 export interface IVideo {
   id: number;
   url: string;
@@ -6,4 +8,5 @@ export interface IVideo {
   like_count: number;
   abuse_count: number;
   video_id: string;
+  comments: Array<IComment>;
 }
