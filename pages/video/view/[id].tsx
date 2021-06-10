@@ -39,9 +39,9 @@ const VideoDetailPage: React.FC<Props> = ({ video }) => {
           <h2>Comments</h2>
           <CommentAddForm videoId={id} handleCommentAdd={handleCommentAdd} />
           {scopeComments.length > 0 &&
-            scopeComments.map((comment) => {
-              return <CommentCard key={comment.id} comment={comment} />;
-            })}
+            React.Children.toArray(
+              scopeComments.map((comment) => <CommentCard comment={comment} />)
+            )}
         </div>
       </div>
     </Layout>
