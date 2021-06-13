@@ -9,6 +9,7 @@ const UrlService = {
   VIDEO_ADD: baseUrl + 'api/video/add',
   VIDEO_VIEW: baseUrl + 'api/video/',
   VIDEO_COMMENT: baseUrl + 'api/video/comment',
+  LIKE_ENTITY: baseUrl + 'api/like',
 };
 
 export default UrlService;

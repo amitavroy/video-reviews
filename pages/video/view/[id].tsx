@@ -5,6 +5,7 @@ import Card from '../../../components/card';
 import { CommentCard } from '../../../components/comment-card';
 import { CommentAddForm } from '../../../components/forms/comment-add-form';
 import Layout from '../../../components/layout';
+import Like from '../../../components/like';
 import VideoPlayer from '../../../components/video-player';
 import { IVideo } from '../../../contracts/IVideo';
 import AuthService from '../../../services/auth.service';
@@ -17,9 +18,15 @@ interface Props {
 
 const VideoDetailPage: React.FC<Props> = ({ video }) => {
   const { id, title, video_id, description, comments } = video;
+  let { like_count } = video;
   const [scopeComments, setScopeComments] = useState(comments);
   const handleCommentAdd = (comment) => {
     setScopeComments([comment, ...scopeComments]);
+  };
+  const [likes, setLikes] = useState(video.like_count);
+  const handleLikeClick = (action) => {
+    const newLike = action === 'liked' ? likes + 1 : likes - 1;
+    setLikes(newLike);
   };
   return (
     <Layout pageTitle={video.title}>
@@ -32,6 +39,14 @@ const VideoDetailPage: React.FC<Props> = ({ video }) => {
         <div className="col-8">
           <Card>
             <VideoPlayer videoId={video_id} />
+            <div className="flex flex-wrap">
+              <Like
+                type="video"
+                modelId={video.id}
+                count={likes}
+                handleSuccess={handleLikeClick}
+              />
+            </div>
             <div>{description}</div>
           </Card>
         </div>
