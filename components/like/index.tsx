@@ -4,7 +4,7 @@ interface Props {
   type: 'video' | 'comment';
   modelId: number;
   count: number;
-  handleSuccess: (action) => void;
+  handleSuccess: (action: string) => void;
 }
 
 const Like: React.FC<Props> = ({ type, count, handleSuccess, modelId }) => {

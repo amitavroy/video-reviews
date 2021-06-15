@@ -24,7 +24,7 @@ const VideoDetailPage: React.FC<Props> = ({ video }) => {
     setScopeComments([comment, ...scopeComments]);
   };
   const [likes, setLikes] = useState(video.like_count);
-  const handleLikeClick = (action) => {
+  const handleLikeClick = (action: string) => {
     const newLike = action === 'liked' ? likes + 1 : likes - 1;
     setLikes(newLike);
   };
