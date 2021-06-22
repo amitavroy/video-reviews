@@ -9,4 +9,5 @@ export interface IVideo {
   abuse_count: number;
   video_id: string;
   comments: Array<IComment>;
+  isLiked: boolean;
 }

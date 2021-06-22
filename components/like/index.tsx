@@ -5,9 +5,16 @@ interface Props {
   modelId: number;
   count: number;
   handleSuccess: (action: string) => void;
+  isLiked: boolean;
 }
 
-const Like: React.FC<Props> = ({ type, count, handleSuccess, modelId }) => {
+const Like: React.FC<Props> = ({
+  type,
+  count,
+  handleSuccess,
+  modelId,
+  isLiked,
+}) => {
   const handleLikeClick = async () => {
     const resp = await LikeService.addLike({
       entity: type,
@@ -17,8 +24,12 @@ const Like: React.FC<Props> = ({ type, count, handleSuccess, modelId }) => {
   };
   return (
     <div className="pointer" onClick={handleLikeClick}>
-      <i className="bi bi-hand-thumbs-up"></i> {count > 0 && count}{' '}
-      {`${count > 1 ? 'Likes' : 'Like'}`}
+      <i
+        className={`bi ${
+          isLiked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'
+        }`}
+      ></i>{' '}
+      {count > 0 && count} {`${count > 1 ? 'Likes' : 'Like'}`}
     </div>
   );
 };

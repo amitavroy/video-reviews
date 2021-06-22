@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 import Dropdown, { IDropdownItem } from './dropdown';
 
 const primaryDropdown: Array<IDropdownItem> = [
-  { name: 'My videos', type: 'link', href: '/dashboard' },
+  { name: 'Add course', type: 'link', href: '/course/add' },
   { type: 'separator' },
-  { name: 'Submit', type: 'link', href: '/video/submit' },
+  { name: 'Submit video', type: 'link', href: '/video/submit' },
 ];
 const userDropdown: Array<IDropdownItem> = [
   { name: 'My profile', type: 'link', href: '/dashboard' },

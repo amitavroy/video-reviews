@@ -24,8 +24,10 @@ const VideoDetailPage: React.FC<Props> = ({ video }) => {
     setScopeComments([comment, ...scopeComments]);
   };
   const [likes, setLikes] = useState(video.like_count);
+  const [isLiked, setIsLiked] = useState(video.isLiked);
   const handleLikeClick = (action: string) => {
     const newLike = action === 'liked' ? likes + 1 : likes - 1;
+    setIsLiked(action === 'liked');
     setLikes(newLike);
   };
   return (
@@ -44,6 +46,7 @@ const VideoDetailPage: React.FC<Props> = ({ video }) => {
                 type="video"
                 modelId={video.id}
                 count={likes}
+                isLiked={isLiked}
                 handleSuccess={handleLikeClick}
               />
             </div>
