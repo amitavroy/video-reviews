@@ -11,6 +11,7 @@ const UrlService = {
   VIDEO_COMMENT: baseUrl + 'api/video/comment',
   LIKE_ENTITY: baseUrl + 'api/like',
   COURSE_ADD: baseUrl + 'api/course',
+  MY_COURSES: baseUrl + 'api/my-courses',
 };
 
 export default UrlService;

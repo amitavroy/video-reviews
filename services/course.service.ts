@@ -10,5 +10,13 @@ class CourseService {
     });
     if (result.status === 201) return result;
   };
+  static async getMyCourses() {
+    const authHeaders = AuthService.getUserAuthHeader();
+    const result = await axios.get(UrlService.MY_COURSES, {
+      headers: authHeaders,
+    });
+
+    return result;
+  }
 }
 export default CourseService;
