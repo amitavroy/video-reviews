@@ -12,6 +12,8 @@ const UrlService = {
   LIKE_ENTITY: baseUrl + 'api/like',
   COURSE_ADD: baseUrl + 'api/course',
   MY_COURSES: baseUrl + 'api/my-courses',
+  GET_COURSE_DETAILS: baseUrl + 'api/course',
+  CHAPTER_ADD: baseUrl + 'api/chapter',
 };
 
 export default UrlService;

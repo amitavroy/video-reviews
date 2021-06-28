@@ -18,5 +18,14 @@ class CourseService {
 
     return result;
   }
+  static async getCourseById(id) {
+    const authHeaders = AuthService.getUserAuthHeader();
+    const url = `${UrlService.GET_COURSE_DETAILS}/${id}`;
+    const result = await axios.get(url, {
+      headers: authHeaders,
+    });
+
+    return result;
+  }
 }
 export default CourseService;
