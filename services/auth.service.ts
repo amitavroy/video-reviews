@@ -7,6 +7,7 @@ import UrlService from './url.service';
 
 export const TOKEN_STORAGE_KEY = 'token';
 export const USER_STORAGE_KEY = 'userName';
+export const USER_ROLE_KEY = 'userRole';
 
 class AuthService {
   static getUserAuthHeader = () => {
@@ -40,6 +41,7 @@ class AuthService {
       if (result.status === 200) {
         Cookies.set(TOKEN_STORAGE_KEY, result.data.token);
         Cookies.set(USER_STORAGE_KEY, result.data.user_name);
+        Cookies.set(USER_ROLE_KEY, result.data.role);
         Route.push('/dashboard');
       }
     } catch (e) {
