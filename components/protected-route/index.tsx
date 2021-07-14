@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import cookies from 'next-cookies';
-import {
+import AuthService, {
   TOKEN_STORAGE_KEY,
   USER_ROLE_KEY,
   USER_STORAGE_KEY,
@@ -19,6 +19,7 @@ export function ProtectedRoute(WrapperComponent: any) {
           ctx.res.end();
         }
       }
+      AuthService.checkIfAdminRoute(ctx, role);
       const initialProps = {
         token,
         role,

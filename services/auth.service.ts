@@ -50,5 +50,12 @@ class AuthService {
       return false;
     }
   };
+  static checkIfAdminRoute = (context, userRole) => {
+    const { req } = context;
+    if (req?.url.includes('admin') && userRole !== 'admin') {
+      context.res.writeHead(302, { Location: '/dashboard' });
+      context.res.end();
+    }
+  };
 }
 export default AuthService;
