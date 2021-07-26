@@ -9,6 +9,7 @@ import ChapterAddForm from '../../../components/forms/chapter-add-form';
 
 import Layout from '../../../components/layout';
 import { ICourse } from '../../../contracts/ICourse';
+import ChapterService from '../../../services/chapter.service';
 import CourseService from '../../../services/course.service';
 
 const DragHandle = SortableHandle(() => <i className="bi bi-arrows-move"></i>);
@@ -25,7 +26,7 @@ const SortableChapter = SortableElement(({ chapter }) => {
 
 const SortableCourse = SortableContainer(({ chapters }) => {
   return (
-    <div>
+    <div className="block">
       {chapters.map((chapter, index) => {
         return (
           <SortableChapter chapter={chapter} key={chapter.id} index={index} />
@@ -40,6 +41,7 @@ const CourseViewPage = ({ id }) => {
     getCourseDetails(id);
   }, []);
   const [course, setCourse] = useState<ICourse>(null);
+  const [sorted, setSorted] = useState(false);
   const getCourseDetails = async (id) => {
     const resp = await CourseService.getCourseById(id);
     setCourse(resp.data.data);
@@ -50,9 +52,20 @@ const CourseViewPage = ({ id }) => {
     setCourse({ ...newCourse });
   };
   const handleSort = ({ oldIndex, newIndex }) => {
+    setSorted(true);
     const newCourse = course;
     arrayMove.mutate(newCourse.chapters, oldIndex, newIndex);
     setCourse({ ...newCourse });
+  };
+  const updateSort = async () => {
+    const sequence = [];
+    course.chapters.map((chapter, index) => {
+      sequence.push({ id: chapter.id, weight: index });
+    });
+    console.log('sequence', sequence);
+    const postData = { course_id: id, sequence };
+    const response = await ChapterService.updateChapterSequence(postData);
+    response.status === 204 ? setSorted(false) : null;
   };
   return (
     <Layout pageTitle="My courses">
@@ -66,7 +79,21 @@ const CourseViewPage = ({ id }) => {
             <ChapterAddForm courseId={id} addNewChapter={addNewChapter} />
           </div>
           <div className="col-7 offset-md-1">
-            <h3>Chapters</h3>
+            <div className="block">
+              <h3>
+                Chapters{' '}
+                {sorted && (
+                  <span>
+                    <button
+                      className="btn btn-sm btn-success float-end"
+                      onClick={updateSort}
+                    >
+                      Update
+                    </button>
+                  </span>
+                )}
+              </h3>
+            </div>
             {course && course.chapters.length > 0 && (
               <SortableCourse
                 chapters={course.chapters}

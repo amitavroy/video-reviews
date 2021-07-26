@@ -14,6 +14,7 @@ const UrlService = {
   MY_COURSES: baseUrl + 'api/my-courses',
   GET_COURSE_DETAILS: baseUrl + 'api/course',
   CHAPTER_ADD: baseUrl + 'api/chapter',
+  CHAPTER_SEQUENCE_UPDATE: baseUrl + 'api/chapter/sequence-update',
   ADMIN_USER_LIST: baseUrl + 'api/admin/users',
 };
 

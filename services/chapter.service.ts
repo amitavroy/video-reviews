@@ -10,5 +10,12 @@ class ChapterService {
     });
     if (result.status === 201) return result;
   };
+  static updateChapterSequence = async (data) => {
+    const authHeaders = AuthService.getUserAuthHeader();
+    const result = await axios.post(UrlService.CHAPTER_SEQUENCE_UPDATE, data, {
+      headers: authHeaders,
+    });
+    if (result.status === 204) return result;
+  };
 }
 export default ChapterService;
